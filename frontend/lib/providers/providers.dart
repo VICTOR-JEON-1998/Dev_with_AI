@@ -7,6 +7,7 @@ class Group {
   Group({required this.name, this.isOwner = false});
 }
 
+
 final authTokenProvider = StateProvider<String?>((ref) => null);
 
 final dioProvider = Provider<Dio>((ref) {
@@ -30,3 +31,4 @@ class GroupsNotifier extends StateNotifier<List<Group>> {
 }
 
 final groupsProvider = StateNotifierProvider<GroupsNotifier, List<Group>>((ref) => GroupsNotifier());
+
