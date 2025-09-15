@@ -7,18 +7,6 @@ class Group {
   Group({required this.name, this.isOwner = false});
 }
 
-class Post {
-  final String id;
-  final String groupId;
-  String content;
-  List<String> comments;
-  Post({
-    required this.id,
-    required this.groupId,
-    required this.content,
-    List<String>? comments,
-  }) : comments = comments ?? [];
-}
 
 final authTokenProvider = StateProvider<String?>((ref) => null);
 
@@ -44,42 +32,3 @@ class GroupsNotifier extends StateNotifier<List<Group>> {
 
 final groupsProvider = StateNotifierProvider<GroupsNotifier, List<Group>>((ref) => GroupsNotifier());
 
-class PostsNotifier extends StateNotifier<List<Post>> {
-  PostsNotifier() : super([]);
-
-  Future<void> refresh(String groupId) async {
-    await Future.delayed(const Duration(milliseconds: 300));
-  }
-
-  void addPost(String groupId, String content) {
-    final id = DateTime.now().millisecondsSinceEpoch.toString();
-    state = [...state, Post(id: id, groupId: groupId, content: content)];
-  }
-
-  void editPost(String id, String content) {
-    state = [
-      for (final p in state)
-        if (p.id == id)
-          Post(id: p.id, groupId: p.groupId, content: content, comments: p.comments)
-        else
-          p
-    ];
-  }
-
-  void addComment(String id, String comment) {
-    state = [
-      for (final p in state)
-        if (p.id == id)
-          Post(
-            id: p.id,
-            groupId: p.groupId,
-            content: p.content,
-            comments: [...p.comments, comment],
-          )
-        else
-          p
-    ];
-  }
-}
-
-final postsProvider = StateNotifierProvider<PostsNotifier, List<Post>>((ref) => PostsNotifier());

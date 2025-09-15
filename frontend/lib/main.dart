@@ -7,11 +7,6 @@ import 'features/auth/sign_up_page.dart';
 import 'features/groups/group_list_page.dart';
 import 'features/groups/group_create_page.dart';
 import 'features/groups/group_join_page.dart';
-import 'features/posts/group_feed_page.dart';
-import 'features/posts/post_detail_page.dart';
-import 'features/posts/post_compose_page.dart';
-import 'features/posts/post_edit_page.dart';
-import 'features/settings/profile_page.dart';
 import 'providers/providers.dart';
 
 void main() {
@@ -24,23 +19,6 @@ final router = GoRouter(initialLocation: '/', routes: [
   GoRoute(path: '/home', builder: (context, state) => const GroupListPage()),
   GoRoute(path: '/groups/create', builder: (context, state) => const GroupCreatePage()),
   GoRoute(path: '/groups/join', builder: (context, state) => const GroupJoinPage()),
-  GoRoute(
-    path: '/groups/:id/feed',
-    builder: (context, state) => GroupFeedPage(groupId: state.params['id']!),
-  ),
-  GoRoute(
-    path: '/posts/:id',
-    builder: (context, state) => PostDetailPage(postId: state.params['id']!),
-  ),
-  GoRoute(
-    path: '/posts/compose',
-    builder: (context, state) => PostComposePage(groupId: state.uri.queryParameters['group']),
-  ),
-  GoRoute(
-    path: '/posts/:id/edit',
-    builder: (context, state) => PostEditPage(postId: state.params['id']!),
-  ),
-  GoRoute(path: '/settings/profile', builder: (context, state) => const ProfilePage()),
 ]);
 
 class PBApp extends ConsumerWidget {

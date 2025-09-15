@@ -15,12 +15,6 @@ class GroupListPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('My Groups'),
         leading: router.canPop() ? BackButton(onPressed: router.pop) : null,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () => router.go('/settings/profile'),
-          )
-        ],
       ),
       body: Column(
         children: [
@@ -31,7 +25,6 @@ class GroupListPage extends ConsumerWidget {
                   ListTile(
                     title: Text(g.name),
                     subtitle: Text(g.isOwner ? 'Owner' : 'Member'),
-                    onTap: () => router.go('/groups/${Uri.encodeComponent(g.name)}/feed'),
                   ),
               ],
             ),
