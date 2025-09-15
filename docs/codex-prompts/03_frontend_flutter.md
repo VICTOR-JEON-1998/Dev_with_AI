@@ -22,3 +22,6 @@ You are a senior Flutter engineer.
 - Folder structure under `lib/`
 - `pubspec.yaml` dependencies
 - Mock data mode
+
+--
+0915 여기까지 함
