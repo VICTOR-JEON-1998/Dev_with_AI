@@ -1,0 +1,150 @@
+{
+  "info": {
+    "name": "PB API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth Signup",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "url": {"raw":"{{baseUrl}}/api/auth/signup","host":["{{baseUrl}}"],"path":["api","auth","signup"]},
+        "body": {"mode":"raw","raw":"{\n  \"email\": \"user@example.com\",\n  \"password\": \"password\",\n  \"displayName\": \"User\"\n}"}
+      }
+    },
+    {
+      "name": "Auth Signin",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "url": {"raw":"{{baseUrl}}/api/auth/signin","host":["{{baseUrl}}"],"path":["api","auth","signin"]},
+        "body": {"mode":"raw","raw":"{\n  \"email\": \"user@example.com\",\n  \"password\": \"password\"\n}"}
+      }
+    },
+    {
+      "name": "Auth Refresh",
+      "request": {
+        "method": "POST",
+        "url": {"raw":"{{baseUrl}}/api/auth/refresh","host":["{{baseUrl}}"],"path":["api","auth","refresh"]}
+      }
+    },
+    {
+      "name": "Auth Signout",
+      "request": {
+        "method": "POST",
+        "url": {"raw":"{{baseUrl}}/api/auth/signout","host":["{{baseUrl}}"],"path":["api","auth","signout"]}
+      }
+    },
+    {
+      "name": "Group Check ID",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"}],
+        "url": {"raw":"{{baseUrl}}/api/groups/check-id","host":["{{baseUrl}}"],"path":["api","groups","check-id"]},
+        "body": {"mode":"raw","raw":"{\n  \"groupId\": \"mygroup\"\n}"}
+      }
+    },
+    {
+      "name": "Group Create",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/groups","host":["{{baseUrl}}"],"path":["api","groups"]},
+        "body": {"mode":"raw","raw":"{\n  \"groupId\": \"mygroup\",\n  \"groupPw\": \"secretpw\",\n  \"name\": \"My Group\",\n  \"description\": \"Demo\"\n}"}
+      }
+    },
+    {
+      "name": "Group Join",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/groups/join","host":["{{baseUrl}}"],"path":["api","groups","join"]},
+        "body": {"mode":"raw","raw":"{\n  \"groupId\": \"mygroup\",\n  \"groupPw\": \"secretpw\"\n}"}
+      }
+    },
+    {
+      "name": "Groups Mine",
+      "request": {
+        "method": "GET",
+        "header": [{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/groups/mine","host":["{{baseUrl}}"],"path":["api","groups","mine"]}
+      }
+    },
+    {
+      "name": "Posts List",
+      "request": {
+        "method": "GET",
+        "header": [{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/groups/:groupId/posts","host":["{{baseUrl}}"],"path":["api","groups",":groupId","posts"],"query":[{"key":"limit","value":"20"}]}
+      }
+    },
+    {
+      "name": "Post Create",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/groups/:groupId/posts","host":["{{baseUrl}}"],"path":["api","groups",":groupId","posts"]},
+        "body": {"mode":"raw","raw":"{\n  \"title\": \"Hello\",\n  \"body\": \"First post\"\n}"}
+      }
+    },
+    {
+      "name": "Post Detail",
+      "request": {
+        "method": "GET",
+        "url": {"raw":"{{baseUrl}}/api/posts/:postId","host":["{{baseUrl}}"],"path":["api","posts",":postId"]}
+      }
+    },
+    {
+      "name": "Post Edit",
+      "request": {
+        "method": "PATCH",
+        "header": [{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/posts/:postId","host":["{{baseUrl}}"],"path":["api","posts",":postId"]},
+        "body": {"mode":"raw","raw":"{\n  \"title\": \"Updated\"\n}"}
+      }
+    },
+    {
+      "name": "Post Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/posts/:postId","host":["{{baseUrl}}"],"path":["api","posts",":postId"]}
+      }
+    },
+    {
+      "name": "Comments List",
+      "request": {
+        "method": "GET",
+        "header": [{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/posts/:postId/comments","host":["{{baseUrl}}"],"path":["api","posts",":postId","comments"],"query":[{"key":"limit","value":"20"}]}
+      }
+    },
+    {
+      "name": "Comment Create",
+      "request": {
+        "method": "POST",
+        "header": [{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/posts/:postId/comments","host":["{{baseUrl}}"],"path":["api","posts",":postId","comments"]},
+        "body": {"mode":"raw","raw":"{\n  \"body\": \"Nice post\"\n}"}
+      }
+    },
+    {
+      "name": "Comment Edit",
+      "request": {
+        "method": "PATCH",
+        "header": [{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/comments/:commentId","host":["{{baseUrl}}"],"path":["api","comments",":commentId"]},
+        "body": {"mode":"raw","raw":"{\n  \"body\": \"Edited\"\n}"}
+      }
+    },
+    {
+      "name": "Comment Delete",
+      "request": {
+        "method": "DELETE",
+        "header": [{"key":"Authorization","value":"Bearer {{token}}"}],
+        "url": {"raw":"{{baseUrl}}/api/comments/:commentId","host":["{{baseUrl}}"],"path":["api","comments",":commentId"]}
+      }
+    }
+  ]
+}

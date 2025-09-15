@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pb
+      POSTGRES_PASSWORD: pb
+      POSTGRES_DB: pb
+    ports:
+      - '5432:5432'
+    volumes:
+      - pb-data:/var/lib/postgresql/data
+  app:
+    build: .
+    command: npm run dev
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgres://pb:pb@db:5432/pb
+      JWT_SECRET: secret
+      REFRESH_SECRET: refreshsecret
+    depends_on:
+      - db
+volumes:
+  pb-data:
