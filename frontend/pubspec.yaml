@@ -9,6 +9,8 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^2.4.0
   go_router: ^13.0.0
+  dio: ^5.4.0
+  zod: ^0.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
